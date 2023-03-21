@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homiot/app/widgets/system/system.widget.dart';
 
 class StatusScreen extends StatefulWidget {
   const StatusScreen({super.key});
@@ -39,18 +40,7 @@ class _StatusScreenState extends State<StatusScreen> {
         itemCount: systems.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(systems[index]["name"]),
-                Switch(
-                  value: systems[index]["status"],
-                  onChanged: (bool value) {
-                    systems[index]["status"] = value;
-                  },
-                ),
-              ],
-            ),
+            title: SystemWidget(system: systems[index]),
           );
         },
       ),
