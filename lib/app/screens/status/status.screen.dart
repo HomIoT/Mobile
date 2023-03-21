@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homiot/app/services/api/api.service.dart';
 import 'package:homiot/app/widgets/system/system.widget.dart';
 
 class StatusScreen extends StatefulWidget {
@@ -31,6 +32,18 @@ class _StatusScreenState extends State<StatusScreen> {
       "status": false,
     }
   ];
+
+  final DioClient _client = DioClient();
+
+  Future<void> getSystems(BuildContext context) async {
+    var response = _client.all();
+
+    response.then((result) {
+      if (result.statusCode == 200) {
+        print(response);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
