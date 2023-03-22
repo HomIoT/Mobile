@@ -50,4 +50,19 @@ class DioClient {
       return response;
     }
   }
+
+  // Create system
+  Future<Response> create(dynamic data) async {
+    Response response;
+
+    try {
+      response = await _dio.post('$_baseUrl/systems', data: data);
+
+      return response;
+    } on DioError catch (e) {
+      response = e.response!;
+
+      return response;
+    }
+  }
 }
