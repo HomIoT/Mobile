@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:homiot/app/screens/control/control.screen.dart';
-import 'package:homiot/app/screens/status/status.screen.dart';
+import 'package:homiot/app/screens/new/new.screen.dart';
+import 'package:homiot/app/screens/systems/systems.screen.dart';
 
 class Landing extends StatefulWidget {
   const Landing({super.key});
@@ -14,8 +14,8 @@ class _LandingState extends State<Landing> {
 
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    StatusScreen(),
-    ControlScreen(),
+    SystemScreen(),
+    NewScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -31,23 +31,27 @@ class _LandingState extends State<Landing> {
         title: const Text("HomIoT"),
         elevation: 0,
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.system_security_update),
-            label: 'Status',
+            icon: Icon(Icons.lightbulb),
+            label: 'Systems',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.control_point),
-            label: 'Control',
+            icon: Icon(Icons.new_label),
+            label: 'New System',
           ),
         ],
-        elevation: 10,
+        elevation: 0,
+        backgroundColor: Colors.grey[100],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueGrey[900],
+        selectedItemColor: Colors.blueGrey[800],
         unselectedItemColor: Colors.blueGrey[400],
         onTap: _onItemTapped,
       ),
