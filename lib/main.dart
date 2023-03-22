@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homiot/app/screens/landing.dart';
+import 'package:homiot/app/services/state/state.service.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'HomIoT',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+    return ChangeNotifierProvider<AppState>(
+      create: (context) => AppState(),
+      child: MaterialApp(
+        title: 'HomIoT',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+        ),
+        home: const Landing(),
       ),
-      home: const Landing(),
     );
   }
 }
