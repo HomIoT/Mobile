@@ -49,10 +49,10 @@ class _LandingState extends State<Landing> {
           ),
         ],
         elevation: 0,
-        backgroundColor: Colors.grey[100],
+        // backgroundColor: Colors.grey[100],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueGrey[800],
-        unselectedItemColor: Colors.blueGrey[400],
+        // selectedItemColor: Colors.blueGrey[800],
+        // unselectedItemColor: Colors.blueGrey[400],
         onTap: _onItemTapped,
       ),
     );

@@ -23,11 +23,6 @@ class _SystemScreenState extends State<SystemScreen> {
   Future<void> _showSnackBar(BuildContext context, String message) async {
     final snackBar = SnackBar(
       content: Text(message),
-      action: SnackBarAction(
-        textColor: Colors.blueGrey[100],
-        label: 'Close',
-        onPressed: () {},
-      ),
       duration: const Duration(seconds: 1),
     );
 

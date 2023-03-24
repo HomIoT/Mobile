@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         title: 'HomIoT',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          // brightness: Brightness.dark,
           primarySwatch: Colors.blueGrey,
         ),
         home: const Landing(),
