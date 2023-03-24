@@ -26,7 +26,7 @@ class _SystemWidgetState extends State<SystemWidget> {
   Future<void> updateSystem() async {
     String id = widget.system["_id"];
     dynamic data = {
-      "active": !widget.system["active"],
+      "state": !widget.system["state"],
     };
 
     var response = _client.update(id, data);
@@ -58,7 +58,7 @@ class _SystemWidgetState extends State<SystemWidget> {
         Text(widget.system["name"]),
 
         Switch(
-          value: widget.system["active"],
+          value: widget.system["state"],
           onChanged: (bool value) => updateSystem(),
         ),
       ],
