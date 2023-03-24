@@ -15,6 +15,20 @@ class SystemWidget extends StatefulWidget {
 class _SystemWidgetState extends State<SystemWidget> {
   final DioClient _client = DioClient();
 
+  Future<void> _showSnackBar(BuildContext context, String message) async {
+    final snackBar = SnackBar(
+      content: Text(message),
+      action: SnackBarAction(
+        textColor: Colors.blueGrey[100],
+        label: 'Close',
+        onPressed: () {},
+      ),
+      duration: const Duration(seconds: 1),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Future<void> getSystems() async {
     var response = _client.all();
 
@@ -32,6 +46,8 @@ class _SystemWidgetState extends State<SystemWidget> {
     var response = _client.update(id, data);
 
     response.then((result) {
+      _showSnackBar(context, "System updated");
+
       getSystems();
     }).catchError((error) {});
   }

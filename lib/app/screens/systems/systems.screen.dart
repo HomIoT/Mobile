@@ -28,7 +28,7 @@ class _SystemScreenState extends State<SystemScreen> {
         label: 'Close',
         onPressed: () {},
       ),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 1),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
