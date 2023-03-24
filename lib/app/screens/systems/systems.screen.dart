@@ -20,11 +20,26 @@ class _SystemScreenState extends State<SystemScreen> {
     getSystems();
   }
 
+  Future<void> _showSnackBar(BuildContext context, String message) async {
+    final snackBar = SnackBar(
+      content: Text(message),
+      action: SnackBarAction(
+        textColor: Colors.blueGrey[100],
+        label: 'Close',
+        onPressed: () {},
+      ),
+      duration: const Duration(seconds: 3),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Future<void> getSystems() async {
     var response = _client.all();
 
     response.then((result) {
       Provider.of<AppState>(context, listen: false).setSystems(result.data);
+      _showSnackBar(context, "Systems got successfully");
     }).catchError((error) {});
   }
 

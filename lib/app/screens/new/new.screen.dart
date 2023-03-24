@@ -14,6 +14,20 @@ class _NewScreenState extends State<NewScreen> {
   final TextEditingController _name = TextEditingController();
   final TextEditingController _digital = TextEditingController();
 
+  Future<void> _showSnackBar(BuildContext context, String message) async {
+    final snackBar = SnackBar(
+      content: Text(message),
+      action: SnackBarAction(
+        textColor: Colors.blueGrey[100],
+        label: 'Close',
+        onPressed: () {},
+      ),
+      duration: const Duration(seconds: 3),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Future<void> createSystem() async {
     dynamic data = {
       "name": _name.text,
@@ -23,6 +37,8 @@ class _NewScreenState extends State<NewScreen> {
     var response = _client.create(data);
 
     response.then((result) {
+      _showSnackBar(context, "System created");
+
       _name.clear();
       _digital.clear();
     }).catchError((error) {});
