@@ -65,4 +65,19 @@ class DioClient {
       return response;
     }
   }
+
+  // Restart systems
+  Future<Response> reset() async {
+    Response response;
+
+    try {
+      response = await _dio.get('$_baseUrl/systems/reset');
+
+      return response;
+    } on DioError catch (e) {
+      response = e.response!;
+
+      return response;
+    }
+  }
 }
