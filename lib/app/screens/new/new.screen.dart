@@ -17,6 +17,7 @@ class _NewScreenState extends State<NewScreen> {
   Future<void> createSystem() async {
     dynamic data = {
       "name": _name.text,
+      "digital": _digital.text,
     };
 
     var response = _client.create(data);
