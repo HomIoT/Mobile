@@ -16,6 +16,15 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
+  Future<void> _showSnackBar(BuildContext context, String message) async {
+    final snackBar = SnackBar(
+      content: Text(message),
+      duration: const Duration(seconds: 1),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Future<void> login() async {
     dynamic data = {
       "username": _username.text,
@@ -25,11 +34,16 @@ class _AuthScreenState extends State<AuthScreen> {
     var response = _client.login(data);
 
     response.then((result) {
-      Provider.of<AppState>(context, listen: false).setAuthenticated(true);
-      Provider.of<AppState>(context, listen: false).setToken(result.data.token);
+      if (result.statusCode == 200) {
+        Provider.of<AppState>(context, listen: false).setAuthenticated(true);
+        Provider.of<AppState>(context, listen: false)
+            .setToken(result.data["token"]);
 
-      _username.clear();
-      _password.clear();
+        _username.clear();
+        _password.clear();
+      } else {
+        _showSnackBar(context, result.data["message"].toString());
+      }
     }).catchError((error) {});
   }
 

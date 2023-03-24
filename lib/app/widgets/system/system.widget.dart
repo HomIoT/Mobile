@@ -25,7 +25,7 @@ class _SystemWidgetState extends State<SystemWidget> {
   }
 
   Future<void> getSystems() async {
-    var response = _client.all();
+    var response = _client.all(context);
 
     response.then((result) {
       Provider.of<AppState>(context, listen: false).setSystems(result.data);
@@ -38,7 +38,7 @@ class _SystemWidgetState extends State<SystemWidget> {
       "state": !widget.system["state"],
     };
 
-    var response = _client.update(id, data);
+    var response = _client.update(id, data, context);
 
     response.then((result) {
       _showSnackBar(context, "System updated");
@@ -52,22 +52,7 @@ class _SystemWidgetState extends State<SystemWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // Row(
-        //   children: [
-        //     IconButton(
-        //         onPressed: () {},
-        //         icon: const Icon(
-        //           Icons.delete,
-        //           color: Colors.red,
-        //         )),
-        //     const SizedBox(
-        //       width: 10,
-        //     ),
-        //     Text(widget.system["name"]),
-        //   ],
-        // ),
         Text(widget.system["name"]),
-
         Switch(
           value: widget.system["state"],
           onChanged: (bool value) => updateSystem(),

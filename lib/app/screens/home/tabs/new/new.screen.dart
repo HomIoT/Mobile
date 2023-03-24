@@ -29,15 +29,14 @@ class _NewScreenState extends State<NewScreen> {
       "digital": _digital.text,
     };
 
-    var response = _client.create(data);
+    var response = _client.create(data, context);
 
     response.then((result) {
       _showSnackBar(context, "System created");
 
       _name.clear();
       _digital.clear();
-    }).catchError((error) {
-    });
+    }).catchError((error) {});
   }
 
   @override

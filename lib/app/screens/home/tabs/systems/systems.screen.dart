@@ -30,7 +30,7 @@ class _SystemScreenState extends State<SystemScreen> {
   }
 
   Future<void> getSystems() async {
-    var response = _client.all();
+    var response = _client.all(context);
 
     response.then((result) {
       Provider.of<AppState>(context, listen: false).setSystems(result.data);

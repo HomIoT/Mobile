@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> getSystems() async {
-    var response = _client.all();
+    var response = _client.all(context);
 
     response.then((result) {
       Provider.of<AppState>(context, listen: false).setSystems(result.data);
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> restartSystems() async {
-    var response = _client.reset();
+    var response = _client.reset(context);
 
     response.then((result) {
       _showSnackBar(context, "Systems restarted");

@@ -1,17 +1,26 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:homiot/app/services/state/state.service.dart';
+import 'package:provider/provider.dart';
+
+String _baseUrl = 'http://localhost:9090/api';
 
 class DioClient {
-  final Dio _dio = Dio();
-
-  final _baseUrl = 'http://localhost:9090/api';
-  // final _baseUrl = 'http://192.168.0.245:9000/api';
+  final Dio _dio = Dio(
+    BaseOptions(baseUrl: _baseUrl),
+  );
 
   // Get all systems
-  Future<Response> all() async {
+  Future<Response> all(BuildContext context) async {
     Response response;
 
+    String token = Provider.of<AppState>(context, listen: false).getToken;
+
+    _dio.options.headers["Authorization"] = 'Bearer $token';
+
     try {
-      response = await _dio.get('$_baseUrl/systems');
+      response = await _dio.get('/systems');
 
       return response;
     } on DioError catch (e) {
@@ -22,11 +31,15 @@ class DioClient {
   }
 
   // Get single system
-  Future<Response> single(String id) async {
+  Future<Response> single(String id, BuildContext context) async {
     Response response;
 
+    String token = Provider.of<AppState>(context, listen: false).getToken;
+
+    _dio.options.headers["Authorization"] = 'Bearer $token';
+
     try {
-      response = await _dio.post('$_baseUrl/systems/$id');
+      response = await _dio.post('/systems/$id');
 
       return response;
     } on DioError catch (e) {
@@ -37,11 +50,15 @@ class DioClient {
   }
 
   // Update system
-  Future<Response> update(String id, dynamic data) async {
+  Future<Response> update(String id, dynamic data, BuildContext context) async {
     Response response;
 
+    String token = Provider.of<AppState>(context, listen: false).getToken;
+
+    _dio.options.headers["Authorization"] = 'Bearer $token';
+
     try {
-      response = await _dio.patch('$_baseUrl/systems/$id', data: data);
+      response = await _dio.patch('/systems/$id', data: data);
 
       return response;
     } on DioError catch (e) {
@@ -52,11 +69,15 @@ class DioClient {
   }
 
   // Create system
-  Future<Response> create(dynamic data) async {
+  Future<Response> create(dynamic data, BuildContext context) async {
     Response response;
 
+    String token = Provider.of<AppState>(context, listen: false).getToken;
+
+    _dio.options.headers["Authorization"] = 'Bearer $token';
+
     try {
-      response = await _dio.post('$_baseUrl/systems', data: data);
+      response = await _dio.post('/systems', data: data);
 
       return response;
     } on DioError catch (e) {
@@ -67,11 +88,15 @@ class DioClient {
   }
 
   // Restart systems
-  Future<Response> reset() async {
+  Future<Response> reset(BuildContext context) async {
     Response response;
 
+    String token = Provider.of<AppState>(context, listen: false).getToken;
+
+    _dio.options.headers["Authorization"] = 'Bearer $token';
+
     try {
-      response = await _dio.get('$_baseUrl/systems/reset');
+      response = await _dio.get('/systems/reset');
 
       return response;
     } on DioError catch (e) {
@@ -86,7 +111,7 @@ class DioClient {
     Response response;
 
     try {
-      response = await _dio.post('$_baseUrl/auth/login', data: data);
+      response = await _dio.post('/auth/login', data: data);
 
       return response;
     } on DioError catch (e) {
