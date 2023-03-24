@@ -37,7 +37,6 @@ class _NewScreenState extends State<NewScreen> {
       _name.clear();
       _digital.clear();
     }).catchError((error) {
-      // _showSnackBar(context, error.message);
     });
   }
 

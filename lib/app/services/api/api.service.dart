@@ -80,4 +80,19 @@ class DioClient {
       return response;
     }
   }
+
+  // Login
+  Future<Response> login(dynamic data) async {
+    Response response;
+
+    try {
+      response = await _dio.post('$_baseUrl/auth/login', data: data);
+
+      return response;
+    } on DioError catch (e) {
+      response = e.response!;
+
+      return response;
+    }
+  }
 }
