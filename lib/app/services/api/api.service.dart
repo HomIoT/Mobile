@@ -1,10 +1,9 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:homiot/app/services/state/state.service.dart';
 import 'package:provider/provider.dart';
 
-String _baseUrl = 'http://apps.amirhossein.info:12000/api';
+String _baseUrl = 'http://apps.amirhossein.shop:12000/api';
 
 class DioClient {
   final Dio _dio = Dio(
