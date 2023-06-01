@@ -49,14 +49,21 @@ class _SystemWidgetState extends State<SystemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(widget.system["name"]),
-        Switch(
-          value: widget.system["state"],
-          onChanged: (bool value) => updateSystem(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(widget.system["name"]),
+            Switch(
+              value: widget.system["state"],
+              onChanged: (bool value) => updateSystem(),
+            ),
+          ],
         ),
+        Text("Digital: ${widget.system["digital"].toString()}"),
       ],
     );
   }

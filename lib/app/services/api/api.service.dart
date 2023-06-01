@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:homiot/app/services/state/state.service.dart';
 import 'package:provider/provider.dart';
 
-String _baseUrl = 'http://apps.amirhossein.shop:12000/api';
+String _baseUrl = 'http://localhost:9090/api';
 
 class DioClient {
   final Dio _dio = Dio(

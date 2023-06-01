@@ -43,13 +43,14 @@ class _SystemScreenState extends State<SystemScreen> {
     List<dynamic> systems =
         Provider.of<AppState>(context, listen: true).getSystems;
 
-    return ListView.builder(
+    return ListView.separated(
       itemCount: systems.length,
       itemBuilder: (context, index) {
         return ListTile(
           title: SystemWidget(system: systems[index]),
         );
       },
+      separatorBuilder: (context, index) => Divider(),
     );
   }
 }
